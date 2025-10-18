@@ -9,7 +9,7 @@ import MessageList from './components/MessageList';
 import MessageInput from './components/MessageInput';
 
 
-const API_URL = process.env.VITE_API_URL
+const API_URL = "https://fullstack-ai-projesi.onrender.com/api"
 
 function App() {
   const [user, setUser] = useState(null);
