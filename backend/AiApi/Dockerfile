@@ -2,18 +2,20 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# DEĞİŞİKLİK: Proje dosyasını doğru yoldan kopyala (ana dizine göre)
-COPY backend/aiapi/*.csproj ./
+# DÜZELTME: Klasör adı büyük/küçük harfe duyarlıdır. "AiApi" olarak güncellendi.
+COPY backend/AiApi/*.csproj ./
 RUN dotnet restore
 
-# DEĞİŞİKLİK: Projenin geri kalan tüm dosyalarını doğru yoldan kopyala
-COPY backend/aiapi/. ./
+# DÜZELTME: Klasör adı "AiApi" olarak güncellendi.
+COPY backend/AiApi/. ./
 
-# Publish ederken proje adını belirtmek daha güvenilirdir
-RUN dotnet publish "aiapi.csproj" -c Release -o /app/publish
+# DÜZELTME: Proje dosyası adı "AiApi.csproj" olarak güncellendi.
+RUN dotnet publish "AiApi.csproj" -c Release -o /app/publish
 
 # 2. Adım: Uygulamayı çalıştırmak için daha küçük olan runtime imajını kullan
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=build /app/publish .
+# DÜZELTME: DLL adı "AiApi.dll" olarak güncellendi.
 ENTRYPOINT ["dotnet", "AiApi.dll"]
+
