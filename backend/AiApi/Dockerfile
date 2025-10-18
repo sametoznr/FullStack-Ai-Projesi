@@ -19,4 +19,4 @@ COPY --from=build /app/publish .
 EXPOSE 80
 
 # Uygulamayı çalıştıracak son komut
-ENTRYPOINT ["dotnet", "aiapi.dll"]
+ENTRYPOINT ["dotnet", "AiApi.dll"]
