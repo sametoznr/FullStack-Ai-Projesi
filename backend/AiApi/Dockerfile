@@ -1,14 +1,22 @@
-# 1. Build aşaması
+# 1. Adım: Projeyi build etmek (derlemek) için .NET SDK'sını kullan
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY . .
-RUN dotnet restore
-RUN dotnet publish -c Release -o /app/out
 
-# 2. Çalışma aşaması
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+# Proje dosyasını kopyala ve bağımlılıkları yükle
+COPY *.csproj .
+RUN dotnet restore
+
+# Tüm proje dosyalarını kopyala ve publish et (yayınla)
+COPY . .
+RUN dotnet publish -c Release -o /app/publish
+
+# 2. Adım: Uygulamayı çalıştırmak için daha küçük olan runtime imajını kullan
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-COPY --from=build /app/out .
-ENV ASPNETCORE_URLS=http://0.0.0.0:${PORT}
-EXPOSE 10000
-ENTRYPOINT ["dotnet", "AiApi.dll"]
+COPY --from=build /app/publish .
+
+# Uygulamanın hangi portta çalışacağını belirt (Render bunu otomatik yönetir)
+EXPOSE 80
+
+# Uygulamayı çalıştıracak son komut
+ENTRYPOINT ["dotnet", "aiapi.dll"]
