@@ -108,9 +108,9 @@ npm run android
 ## Kod Hakimiyeti Kanıtı (Gerçek Durum Açıklaması)
 
 > Bu proje, **Konuşarak Öğren Full Stack + AI Stajyerlik** yönergesi doğrultusunda hazırlanmıştır.  
-> Uygulama sürecinde **React Native ve .NET ortamlarında çok sayıda kurulum ve build hatası** yaşandığından,  
-> zamanın yetişmesi amacıyla **tüm kodlar yapay zekâ (ChatGPT, Claude, Gemini)** yardımıyla oluşturulmuştur.  
->
+> Python AI servisi ve Hugging Face model entegrasyonu kısmında çeşitli teknik sorunlar yaşadım (model uyumsuzlukları, Gradio API değişiklikleri, nötr etiketin dönmemesi gibi).
+> Bu nedenle kodların tamamını yapay zekâ araçları (ChatGPT, Claude, Gemini) yardımıyla oluşturarak, entegrasyon, hata çözümü ve deploy süreçlerini kendim yürüttüm.,  
+
 > Kodun tamamı yapay zekâ desteğiyle üretilmiş olsa da, geliştirici olarak:
 > - Kodların işleyişini adım adım inceledim,  
 > - Parçaları birleştirdim, düzenledim ve hataları giderdim,  
